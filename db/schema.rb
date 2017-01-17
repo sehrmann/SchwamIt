@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117211441) do
+ActiveRecord::Schema.define(version: 20170117210548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,32 +22,6 @@ ActiveRecord::Schema.define(version: 20170117211441) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["user_id"], name: "index_items_on_user_id", using: :btree
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.integer  "rating",                 null: false
-    t.text     "body"
-    t.integer  "vote_score", default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "item_id"
-    t.integer  "user_id"
-    t.index ["item_id"], name: "index_reviews_on_item_id", using: :btree
-    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
-  end
-
-  create_table "user_votes", force: :cascade do |t|
-    t.integer "user_id",               null: false
-    t.integer "review_id",             null: false
-    t.integer "value",     default: 0
-    t.index ["review_id"], name: "index_user_votes_on_review_id", using: :btree
-    t.index ["user_id"], name: "index_user_votes_on_user_id", using: :btree
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string  "username",                 null: false
-    t.string  "email",                    null: false
-    t.boolean "admin",    default: false
   end
 
 end
